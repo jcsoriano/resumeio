@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers{moduleWithLeadingSlash};
+
+use App\Models{moduleWithLeadingSlash}\{capitalizedMainResource};
+use App\Models{moduleWithLeadingSlash}\{capitalized};
+use App\Http\Controllers\Magis\MagisCategoryController;
+
+class {capitalized}Controller extends MagisCategoryController
+{
+    protected $model = {capitalized}::class;
+    protected $mainResource = '{lowercasePluralMainResource}';
+    
+}

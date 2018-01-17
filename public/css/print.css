@@ -1,0 +1,77 @@
+body {
+  -webkit-print-color-adjust: exact; }
+
+.big-picture {
+  height: 75px;
+  background: rgba(1, 1, 1, 0) !important; }
+
+.nav-holder, .step-holder, .fixed-btn, .none-print, .at-expanding-share-button-desktop, .contact-btn, .print-no-btn, .hidden-nav {
+  display: none !important; }
+
+.p-left-30, .big-holder {
+  padding-top: 15px !important; }
+
+.no-break {
+  page-break-after: avoid; }
+
+.print-half {
+  min-width: 50% !important;
+  width: 50% !important;
+  display: -webkit-inline-box !important;
+  display: inline-flex !important; }
+
+.print-left {
+  text-align: left !important; }
+
+.print-flex-1 {
+  display: -webkit-inline-box !important;
+  display: inline-flex !important; }
+
+hr.big-hr {
+  margin-bottom: 15px; }
+
+.print-row {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.print-3-1 {
+  width: 300px !important;
+  display: table-cell !important;
+  vertical-align: middle !important; }
+
+.print-8 {
+  display: table-cell !important;
+  vertical-align: middle !important; }
+
+.skill-text {
+  margin-bottom: 0px; }
+
+.print-gallery-item {
+  min-width: 33.333% !important;
+  width: 33.333% !important;
+  display: table-cell !important; }
+
+.print-date-holder {
+  min-width: 200px !important;
+  width: 200px !important;
+  display: table-cell !important; }
+
+.print-description-holder {
+  display: table-cell !important; }
+
+.section-1-print {
+  min-width: 14% !important;
+  width: 14% !important;
+  display: inline-table !important;
+  vertical-align: top !important; }
+
+.section-11-print {
+  min-width: 86% !important;
+  width: 86% !important;
+  display: inline-table !important;
+  vertical-align: top !important; }
+
+.print-left-pad {
+  padding-left: 50px; }
+
+/*# sourceMappingURL=print.css.map */

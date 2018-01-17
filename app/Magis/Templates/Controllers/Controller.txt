@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers{moduleWithLeadingSlash};
+
+use App\Http\Requests;
+use App\Models{moduleWithLeadingSlash}\{capitalized};
+use Illuminate\Http\Request;
+use App\Http\Controllers\Magis\MagisController;
+
+class {capitalized}Controller extends MagisController
+{
+    protected $model = {capitalized}::class;
+    {categoryAttribute}
+    
+}

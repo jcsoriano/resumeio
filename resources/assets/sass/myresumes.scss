@@ -1,0 +1,57 @@
+// JQuery Growl
+@import "node_modules/jquery.growl/stylesheets/jquery.growl.sass";
+
+// Font-awesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
+//Dropzone
+@import "node_modules/dropzone/src/dropzone";
+
+// toastr
+@import "node_modules/toastr/toastr";
+
+// resume-specific styles
+@import "resources/assets/sass/resume/bootstrap.min";
+@import "resources/assets/sass/resume/mdb.min";
+@import "resources/assets/sass/resume/style";
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.p-left-30 {
+	    padding-top: 0px;
+
+	}
+}
+
+@media (max-width: 767px){
+	.stepper.stepper-horizontal{
+		display: none !important;
+	}
+	.float-none{
+		float: none !important;
+	}
+	.np-right img {
+	    height: 60px !important;
+	    width: auto !important;
+	    display: inline;
+	}
+	.hidden-nav{
+		box-shadow: none;
+	}
+	.step-holder {
+	    margin-bottom: 0px;
+	}
+}
+
+@media (min-width: 768px){
+	.hidden-nav{
+		display: none !important;
+	}
+}
+
+@media (min-width: 992px){
+	.width-900{
+	    width: 900px;
+		max-width: 100%;
+	}
+}

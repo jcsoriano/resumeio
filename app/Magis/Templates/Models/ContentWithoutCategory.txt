@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Models{moduleWithLeadingSlash};
+
+use Laravel\Scout\Searchable;
+use App\Magis\MagisContentModel;
+use App\Magis\Traits\Models\HasTags;
+use Illuminate\Support\Facades\Auth;
+use App\Magis\Traits\Models\HasPhoto;
+use App\Magis\Traits\Models\HasAuthor;
+use App\Magis\Traits\Models\SavesSlug;
+use Illuminate\Database\Eloquent\Model;
+use App\Magis\Traits\Models\HasRevisions;
+use App\Magis\Traits\Models\RecordsActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Magis\Traits\Models\SavesCreatedUpdatedBy;
+use App\Magis\Traits\Models\EnforcesPublishedScope;
+
+class {capitalized} extends MagisContentModel
+{
+    use RecordsActivity, SavesSlug, SavesCreatedUpdatedBy, EnforcesPublishedScope, 
+    	SoftDeletes, HasTags, HasAuthor, HasRevisions, HasPhoto, Searchable;
+
+    const PLURAL = '{slug}';
+    const SINGULAR = '{singularslug}';
+    const SLUG = '{slug}';
+    const TITLE = '{humanpluralcapitalized}';
+    {moduleAttribute}
+
+    public static function editableFields({capitalized} ${camelcase} = null)
+    {
+        if (Auth::check() && !${camelcase}) {
+            ${camelcase} = new {capitalized};
+
+            // so that new {camelcase}s are considered the logged-in user's for the "own" permission option
+            ${camelcase}->user_id = Auth::user()->id;
+        }
+        $editableFields = [
+            'photo' => 'photo',
+            'name' => 'string',
+            'author' => 'string',
+            'content' => 'mediumText',
+            'tags' => 'string',
+            'excerpt' => 'string',
+            'published_at' => 'datetime',
+            'is_draft' => 'boolean',
+        ];
+
+        if (Auth::check()) {
+            if (Auth::user()->can('schedule', ${camelcase})) {
+                $editableFields['published_at'] = 'datetime';
+            }
+            if (Auth::user()->can('draft', ${camelcase})) {
+                $editableFields['is_draft'] = 'boolean';
+            }
+        }
+        
+        return $editableFields;
+    }
+}

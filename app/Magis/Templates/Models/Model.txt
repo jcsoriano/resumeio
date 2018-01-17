@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Models{moduleWithLeadingSlash};
+
+use App\Magis\MagisModel;
+use App\Magis\Traits\Models\HasPhoto;
+use App\Magis\Traits\Models\SavesSlug;
+use App\Magis\Traits\Models\RecordsActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Magis\Traits\Models\SavesCreatedUpdatedBy;
+
+class {capitalized} extends MagisModel
+{
+    use RecordsActivity, SavesSlug, SavesCreatedUpdatedBy, SoftDeletes, HasPhoto;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'photo', 'name', 'content',
+    ];
+
+    const PLURAL = '{slug}';
+    const SINGULAR = '{singularslug}';
+    const SLUG = '{slug}';
+    const TITLE = '{humanpluralcapitalized}';
+    {moduleAttribute}
+
+    public static function manageColumns()
+    {
+        return [
+            'photo' => 'Photo',
+            'name' => 'Name',
+        ];
+    }
+
+    public static function manageColumnsDefault()
+    {
+        return ['photo', 'name'];
+    }
+
+    public static function editableFields({capitalized} ${snakecase} = null)
+    {
+        return [
+            'photo' => 'photo',
+            'name' => 'string',
+            'content' => 'mediumText',
+        ];
+    }
+}

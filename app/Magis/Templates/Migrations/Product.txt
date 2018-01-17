@@ -1,0 +1,78 @@
+<?php
+
+use App\Magis\Role;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class Create{pluralcapitalized}Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('{plural}', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('photo')->nullable();
+            $table->float('photo_aspect_ratio')->nullable();
+            $table->string('slug')->unique()->index();
+            $table->string('name');
+            $table->string('author')->nullable();
+            $table->mediumText('content')->nullable();
+            $table->string('tags')->nullable();
+            $table->string('excerpt')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->decimal('original_price', 10, 2)->nullable();
+            $table->decimal('stock', 10, 2)->nullable();
+            $table->decimal('stock_alert_level', 10, 2)->nullable();
+            $table->json('gallery')->nullable();
+            $table->text('video_embed_code')->nullable();
+            $table->json('options')->nullable();
+            $table->boolean('is_draft')->default(false);
+            $table->integer('drafted_by')->unsigned()->nullable();
+            $table->datetime('drafted_at')->nullable();
+            $table->integer('published_by')->unsigned()->nullable();
+            $table->datetime('published_at')->nullable();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        $admin = Role::find(2);
+        $moduleRole = '{capitalizedmodule} Manager';
+        $role = Role::where('name', $moduleRole)->first();
+        if(!isset($role->id)) {
+            $role = Role::create([
+                'name' => $moduleRole
+            ]);
+        }
+        $permissions = [
+            'manage-{plural}' => 'all',
+            'list-{plural}' => 'all',
+            'view-{lowercase}' => 'all',
+            'create-{lowercase}' => 'all',
+            'draft-{lowercase}' => 'all',
+            'schedule-{lowercase}' => 'all',
+            'update-{lowercase}' => 'all',
+            'delete-{lowercase}' => 'all',
+            'revert-{lowercase}' => 'all',
+            'restore-{lowercase}' => 'all',
+        ];
+        $role->setPermissions($permissions, false);
+        $admin->setPermissions($permissions, false);
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('{plural}');
+    }
+}

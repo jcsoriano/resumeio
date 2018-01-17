@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class Create{camelCapitalizedPlural}Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('{pivotTable}', function (Blueprint $table) {
+            $table->integer('{firstSingular}_id')->unsigned()->index();
+            $table->foreign('{firstSingular}_id')->references('id')->on('{firstPlural}')->onDelete('cascade');
+            $table->integer('{secondSingular}_id')->unsigned()->index();
+            $table->foreign('{secondSingular}_id')->references('id')->on('{secondPlural}')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('{pivotTable}');
+    }
+}

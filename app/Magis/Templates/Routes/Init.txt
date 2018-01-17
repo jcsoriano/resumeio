@@ -1,0 +1,51 @@
+
+
+Route::get('/', 'Magis\UtilityController@root');
+Route::get('contact', 'Magis\ContactController@show');
+Route::get('contact/manage', 'Magis\UtilityController@root');
+Route::post('contact', 'Magis\ContactController@send');
+Route::get('logout', 'Magis\UtilityController@logout');
+Route::post('upload/{photo?}/{visibility?}/{name?}', 'Magis\UtilityController@upload');
+Route::get('typeMap', 'Magis\UtilityController@typeMap');
+Route::get('test', 'Magis\UtilityController@test');
+Route::post('gallery', 'Magis\UtilityController@gallery');
+Route::get('sessions', 'Magis\UtilityController@sessions');
+
+Route::get('auth/{provider}', 'Magis\SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Magis\SocialAuthController@handleProviderCallback');
+
+Route::post('settings', 'Magis\SettingsController@save')->middleware('auth');
+Route::get('settings', 'Magis\SettingsController@list')->middleware('auth');
+Route::get('activities', 'Magis\ActivityController@list')->middleware('auth');
+
+Route::get('roles/manage', 'Magis\RoleController@admin');
+Route::get('roles/{revisionid}/revert', 'Magis\RoleController@revision');
+Route::get('roles/archives', 'Magis\RoleController@archives');
+Route::post('roles/restore/{key}', 'Magis\RoleController@restore');
+Route::resource('roles', 'Magis\RoleController');
+
+Route::get('adminmenuitems/manage', 'Magis\AdminMenuController@admin');
+Route::resource('adminmenuitems', 'Magis\AdminMenuController');
+
+// Route::get('users/change-password', 'Magis\UserController@showChangePasswordForm');
+// Route::put('users/change-password', 'Magis\UserController@attemptChangePassword');
+Route::get('profile', 'Magis\UserController@profile');
+Route::post('users/gallery', 'Magis\UserController@gallery');
+Route::get('users/manage', 'Magis\UserController@admin');
+Route::get('users/archives', 'Magis\UserController@archives');
+Route::post('users/restore/{key}', 'Magis\UserController@restore');
+Route::resource('users', 'Magis\UserController');
+
+Route::get('accounts', 'Magis\AdminController@index')->middleware('auth');
+
+Route::get('notification_lists/manage', 'Magis\NotificationListController@admin');
+Route::get('notification_lists/{revisionid}/revert', 'Magis\NotificationListController@revision');
+Route::get('notification_lists/restore', 'Magis\NotificationListController@archives');
+Route::post('notification_lists/restore/{key}', 'Magis\NotificationListController@restore');
+Route::resource('notification_lists', 'Magis\NotificationListController');
+
+Route::get('menus/manage', 'Magis\MenuController@admin');
+Route::get('menus/{revisionid}/revert', 'Magis\MenuController@revision');
+Route::get('menus/restore', 'Magis\MenuController@archives');
+Route::post('menus/restore/{key}', 'Magis\MenuController@restore');
+Route::resource('menus', 'Magis\MenuController');

@@ -1,0 +1,58 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class Create{pluralcapitalized}Revisions extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        DB::unprepared('
+            CREATE TABLE {singular_table}_revisions LIKE {table}
+        ');
+        DB::unprepared('
+            ALTER TABLE {singular_table}_revisions 
+                MODIFY COLUMN id int(11) NOT NULL,
+                ADD COLUMN revision_id int(11) AUTO_INCREMENT NOT NULL,
+                DROP PRIMARY KEY,
+                ADD PRIMARY KEY(revision_id)
+        ');
+
+        $indexes = DB::select('SHOW INDEX FROM {singular_table}_revisions WHERE key_name != "PRIMARY"');
+
+        foreach($indexes as $i) {
+            DB::unprepared('ALTER TABLE {singular_table}_revisions DROP INDEX '.$i->Key_name);
+        }
+
+        $columns = Schema::getColumnListing('{table}');
+        $columnList = implode(',', $columns);
+        $old = array_map(function($val) {
+            return 'OLD.'.$val;
+        }, $columns);
+        $oldList = implode(',', $old);
+
+        DB::unprepared("
+            CREATE TRIGGER trigger_{table}_update AFTER UPDATE ON `{table}` FOR EACH ROW
+            BEGIN
+                INSERT INTO {singular_table}_revisions ({$columnList}) VALUES ({$oldList});
+            END
+        ");
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        DB::unprepared('DROP TRIGGER trigger_{table}_update');
+        Schema::drop('{singular_table}_revisions');
+    }
+}

@@ -1,0 +1,36 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//JQuery Growl
+@import "node_modules/jquery.growl/stylesheets/jquery.growl.sass";
+
+//Dropzone
+@import "node_modules/dropzone/src/dropzone";
+
+//Admin LTE
+@import "node_modules/admin-lte/dist/css/AdminLTE.min";
+
+//Admin LTE Skin
+@import "node_modules/admin-lte/dist/css/skins/skin-black-light.min";
+
+//Summernote
+@import "resources/assets/magis/summernote/dist/summernote";
+
+//Font-awesome
+@import "node_modules/font-awesome/scss/font-awesome";
+
+//Timepicker
+@import "node_modules/timepicker/jquery.timepicker.min";
+
+//Datepicker
+@import "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min";
+
+//admin
+@import "resources/assets/magis/admin";

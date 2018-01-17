@@ -1,0 +1,3 @@
+		'Illuminate\Auth\Events\Login' => [
+            'App\Magis\Listeners\SaveUserPermissions',
+        ],

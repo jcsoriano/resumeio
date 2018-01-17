@@ -1,0 +1,8 @@
+
+
+Route::post('{slug}/gallery', '{moduleWithTrailingSlash}{capitalized}Controller@gallery');
+Route::get('{slug}/manage', '{moduleWithTrailingSlash}{capitalized}Controller@admin');
+Route::get('{slug}/{revisionid}/revert', '{moduleWithTrailingSlash}{capitalized}Controller@revision');
+Route::get('{slug}/restore', '{moduleWithTrailingSlash}{capitalized}Controller@archives');
+Route::post('{slug}/restore/{key}', '{moduleWithTrailingSlash}{capitalized}Controller@restore');
+Route::resource('{slug}', '{moduleWithTrailingSlash}{capitalized}Controller');
